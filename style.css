@@ -43,7 +43,6 @@ body {
     font-size: 16px;
 }
 
-/* --- Layout --- */
 .layout {
     display: flex;
     max-width: 1200px;
@@ -51,7 +50,6 @@ body {
     min-height: 100vh;
 }
 
-/* --- Sidebar --- */
 aside {
     width: var(--sidebar-w);
     padding: 2rem 1.5rem;
@@ -123,7 +121,6 @@ nav a svg {
     color: var(--text-muted);
     transition: color 0.2s;
     fill: currentColor;
-    /* Ensures SVG takes text color */
 }
 
 nav a:hover i,
@@ -133,7 +130,6 @@ nav a.active svg {
     color: var(--accent-blue);
 }
 
-/* --- Main Content --- */
 main {
     flex: 1;
     padding: 4rem 5rem;
@@ -206,7 +202,6 @@ a {
     border-bottom: 1px solid var(--border);
 }
 
-/* --- Code Block --- */
 .code-block {
     background: var(--code-block);
     border: 1px solid var(--code-block);
@@ -240,23 +235,29 @@ a {
 
 .copy-btn {
     background: transparent;
-    border: transparent;
+    border: none;
     cursor: pointer;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent-blue);
-    padding: 4px 0;
-    border-radius: 4px;
+    color: var(--text-muted);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    padding: 0;
     transition: all 0.2s ease;
-    font-weight: 500;
-    min-width: 70px;
-    text-align: center;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .copy-btn:hover {
-    background: var(--accent-blue);
-    color: var(--bg-header);
+    background: #64748B4A;
+}
+
+.copy-btn svg,
+.copy-btn i {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
 }
 
 pre {
@@ -270,28 +271,22 @@ pre {
     background: var(--bg-card);
 }
 
-/* --- Frameless Tabs System --- */
 .tabs-container {
     margin-top: 2rem;
     background: transparent;
-    /* No background */
     border: none;
-    /* No border */
 }
 
 .tabs-header {
     display: flex;
     background: transparent;
     border-bottom: 2px solid var(--border);
-    /* Thicker divider */
     gap: 30px;
-    /* More spacing */
     margin-bottom: 2rem;
 }
 
 .tab-btn {
     padding: 0.5rem 0 1rem 0;
-    /* Align text to bottom line */
     border: none;
     background: transparent;
     cursor: pointer;
@@ -318,17 +313,14 @@ pre {
     content: '';
     position: absolute;
     bottom: -2px;
-    /* Overlap the header border */
     left: 0;
     width: 100%;
     height: 2px;
     background: var(--accent-blue);
 }
 
-/* Tab Icons */
 .tab-btn i {
     font-size: 1.1rem;
-    /* Adjust icon size */
     color: var(--text-muted);
     transition: color 0.2s;
 }
@@ -359,7 +351,6 @@ pre {
     }
 }
 
-/* --- Module Grid --- */
 .module-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -410,7 +401,6 @@ pre {
     justify-content: center;
     margin-bottom: 1rem;
     font-size: 1.75rem;
-    /* Icon size inside box */
     color: var(--accent-blue);
 }
 
@@ -442,7 +432,6 @@ pre {
     max-width: none;
 }
 
-/* --- Footer --- */
 footer {
     margin-top: 5rem;
     padding-top: 2rem;
@@ -451,7 +440,6 @@ footer {
     color: var(--text-muted);
 }
 
-/* --- Responsive --- */
 @media (max-width: 900px) {
     .layout {
         flex-direction: column;
@@ -618,74 +606,4 @@ footer {
     line-height: 1.5;
     font-family: 'Roboto Mono', monospace;
     letter-spacing: -0.03em;
-}
-
-/* --- Git Workflow Steps --- */
-.workflow-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin: 3rem 0;
-}
-
-.workflow-step {
-    flex: 1;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem 1rem;
-    text-align: center;
-    min-width: 0; /* Prevents flex items from overflowing their container */
-    transition: all 0.2s;
-}
-
-.workflow-step:hover {
-    border-color: var(--accent-blue);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-.workflow-step h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.1rem;
-    color: var(--accent-blue);
-    font-family: 'Fira Sans', sans-serif;
-}
-
-.workflow-step p {
-    margin: 0 0 1rem 0;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-
-.workflow-code {
-    display: block;
-    background: var(--code-block);
-    color: var(--text-main);
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.8rem;
-    padding: 0.6rem 0.2rem;
-    border-radius: 4px;
-    white-space: nowrap; /* Forces the code to stay on exactly one line */
-    overflow-x: auto; /* Adds a tiny scrollbar only if strictly necessary on small screens */
-}
-
-.workflow-chevron {
-    color: var(--text-muted);
-    opacity: 0.5;
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-}
-
-/* Ensure the chevrons rotate on mobile when flex-direction changes */
-@media (max-width: 900px) {
-    .workflow-row {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .workflow-chevron {
-        transform: rotate(90deg);
-    }
 }

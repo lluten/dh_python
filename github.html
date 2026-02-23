@@ -140,7 +140,7 @@ Structure:
                         <p>You can verify the installation in PowerShell:</p>
                         <div class="code-block">
                             <div class="code-header"><span>POWERSHELL</span><button class="copy-btn"
-                                    onclick="copyCode(this)">COPY</button></div>
+                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
                             <pre>git --version</pre>
                         </div>
                         <p>Git needs to know who you are. This information is attached to every <t
@@ -148,7 +148,7 @@ Structure:
 
                         <div class="code-block">
                             <div class="code-header"><span>POWERSHELL</span><button class="copy-btn"
-                                    onclick="copyCode(this)">COPY</button></div>
+                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
                             <pre># 1. Set your username
 git config --global user.name "Your Name"
 
@@ -162,7 +162,7 @@ git config --global user.email "you@example.com"</pre>
                             Git:</p>
                         <div class="code-block">
                             <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                    onclick="copyCode(this)">COPY</button></div>
+                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
                             <pre>brew install git</pre>
                         </div>
                         <p>Alternatively, typing <code>git</code> in the terminal may trigger the Apple Command Line
@@ -172,7 +172,7 @@ git config --global user.email "you@example.com"</pre>
 
                         <div class="code-block">
                             <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                    onclick="copyCode(this)">COPY</button></div>
+                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
                             <pre># 1. Set your username
 git config --global user.name "Your Name"
 
@@ -185,7 +185,7 @@ git config --global user.email "you@example.com"</pre>
                         <p>Use your package manager:</p>
                         <div class="code-block">
                             <div class="code-header"><span>BASH</span><button class="copy-btn"
-                                    onclick="copyCode(this)">COPY</button></div>
+                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
                             <pre>sudo apt install git</pre>
                         </div>
                         <p>Git needs to know who you are. This information is attached to every <t
@@ -193,7 +193,7 @@ git config --global user.email "you@example.com"</pre>
 
                         <div class="code-block">
                             <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                    onclick="copyCode(this)">COPY</button></div>
+                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
                             <pre># 1. Set your username
 git config --global user.name "Your Name"
 
@@ -229,7 +229,7 @@ git config --global user.email "you@example.com"</pre>
                             style="color:var(--accent-blue)">SSH URL</b> from your repository's page.</p>
                     <div class="code-block">
                         <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                onclick="copyCode(this)">COPY</button></div>
+                                onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
                         <pre>git clone <b style="color:var(--accent-blue)">git@github.com:YourUsername/YourProject.git</b></pre>
                     </div>
                 </div>
@@ -256,7 +256,7 @@ git config --global user.email "you@example.com"</pre>
                         environment folder:</p>
                     <div class="code-block">
                         <div class="code-header"><span>TEXT</span><button class="copy-btn"
-                                onclick="copyCode(this)">COPY</button>
+                                onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button>
                         </div>
                         <pre>.venv/</pre>
                     </div>
@@ -267,7 +267,7 @@ git config --global user.email "you@example.com"</pre>
                         your GitHub repository, using your <b style="color:var(--accent-blue)">SSH URL</b>.</p>
                     <div class="code-block">
                         <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                onclick="copyCode(this)">COPY</button></div>
+                                onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
                         <pre>git init
 git add . 
 git commit -m "<b style="color:var(--text-muted)">chore: init</b>"
@@ -295,7 +295,7 @@ git push -u origin main</pre>
                     your project folder using a . or select specific files.</p>
                 <div class="code-block">
                     <div class="code-header"><span>CMD</span><button class="copy-btn"
-                            onclick="copyCode(this)">COPY</button>
+                            onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button>
                     </div>
                     <pre>git add .</pre>
                 </div>
@@ -310,7 +310,7 @@ git push -u origin main</pre>
                 </p>
                 <div class="code-block">
                     <div class="code-header"><span>CMD</span><button class="copy-btn"
-                            onclick="copyCode(this)">COPY</button>
+                            onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button>
                     </div>
                     <pre>git commit -m "<b style="color:var(--text-muted)">feat: add email notifications on new direct messages</b>"</pre>
                 </div>
@@ -319,7 +319,7 @@ git push -u origin main</pre>
                 <p>Pushing files means uploading your local commits to GitHub.</p>
                 <div class="code-block">
                     <div class="code-header"><span>CMD</span><button class="copy-btn"
-                            onclick="copyCode(this)">COPY</button>
+                            onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button>
                     </div>
                     <pre>git push</pre>
 
@@ -356,8 +356,9 @@ git push -u origin main</pre>
         async function copyCode(btn) {
             const text = btn.closest('.code-block').querySelector('pre').innerText;
             await navigator.clipboard.writeText(text);
-            const original = "COPY"; btn.innerText = "COPIED";
-            setTimeout(() => btn.innerText = original, 2000);
+            const textColor = btn.style.color;
+            btn.style.color = "#64748B4A";
+            setTimeout(() => btn.style.color = textColor, 330);
         }
     </script>
 
