@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DH Python // Workflow</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="layout">
+        <aside>
+            <div class="brand">DH_PYTHON<span>//</span>101</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-home"></i> Start</a></li>
+                    <li><a href="setup.html"><i class="fa-solid fa-download"></i> Setup</a></li>
+                    <li><a href="workflow.html" class="active"><i class="fa-solid fa-folder-open"></i> Workflow</a></li>
+                    <li><a href="github.html"><i class="fa-brands fa-github"></i> Git & GitHub</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <section>
+                <h1>Project Setup</h1>
+                <p class="lead" style="margin-bottom: 1rem;">Setting up structured projects and managing virtual
+                    environments.</p>
+                <div class="hint-box">
+                    <div class="hint-content">
+                        <h3>Environments</h3>
+                        <p> A virtual environment is an isolated Python workspace with its own project-specific
+                            libraries.
+
+                            Creating a new environment for each project prevents dependency conflicts, ensures
+                            reproducibility, and keeps your code stable and easier to maintain.
+                    </div>
+                </div>
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" onclick="openTab('win')">
+                            <i class="fa-brands fa-windows"></i> Windows
+                        </button>
+                        <button class="tab-btn" onclick="openTab('mac')">
+                            <i class="fa-brands fa-apple"></i>
+                            macOS
+                        </button>
+                        <button class="tab-btn" onclick="openTab('linux')">
+                            <i class="fa-brands fa-linux"></i>
+                            Linux
+                        </button>
+                    </div>
+
+                    <div id="win" class="tab-content active">
+                        <h3>Step 1: Create a Project Folder</h3>
+                        <p>Create a new folder for your project. You can do this in your file explorer or using the
+                            terminal:</p>
+                        <div class="code-block">
+                            <div class="code-header"><span>POWERSHELL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre>mkdir PROJECT_NAME
+cd PROJECT_NAME</pre>
+                        </div>
+                        <h3>Step 2: Virtual Environment</h3>
+                        <p>In the project folder, create a virtual environment and activate it:</p>
+                        <div class="code-block">
+                            <div class="code-header"><span>POWERSHELL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre>python -m venv .venv
+.venv\Scripts\activate</pre>
+                        </div>
+                    </div>
+                    <div id="mac" class="tab-content">
+                        <h3>Step 1: Create a Project Folder</h3>
+                        <p>Create a new folder for your project. You can do this in your file explorer or using the
+                            terminal:</p>
+                        <div class="code-block">
+                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre>mkdir PROJECT_NAME
+cd PROJECT_NAME</pre>
+                        </div>
+                        <h3>Step 2: Virtual Environment</h3>
+                        <p>In the project folder, create a virtual environment and activate it:</p>
+                        <div class="code-block">
+                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre>python3 -m venv .venv
+source .venv/bin/activate</pre>
+                        </div>
+                    </div>
+
+                    <div id="linux" class="tab-content">
+                        <h3>Step 1: Create a Project Folder</h3>
+                        <p>Create a new directory for your project. You can do this in your file explorer or using
+                            the
+                            terminal:</p>
+                        <div class="code-block">
+                            <div class="code-header"><span>BASH</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre>mkdir PROJECT_NAME
+cd PROJECT_NAME</pre>
+                        </div>
+                        <h3>Step 2: Virtual Environment</h3>
+                        <p>In the project directory, create a virtual environment and activate it:</p>
+                        <div class="code-block">
+                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre>python3 -m venv .venv
+source .venv/bin/activate</pre>
+                        </div>
+                    </div>
+                </div>
+                <h3>Step 3: Install Dependencies</h3>
+                <p>With the virtual environment activated, install required packages:</p>
+                <div class="code-block">
+                    <div class="code-header"><span>POWERSHELL</span><button class="copy-btn"
+                            onclick="copyCode(this)">COPY</button></div>
+                    <pre>pip install pandas</pre>
+                </div>
+            </section>
+
+
+            </section>
+
+            <footer>
+                <p>Göttingen Centre for Digital Humanities (GCDH) &copy; 2026</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function openTab(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+
+        async function copyCode(btn) {
+            const text = btn.closest('.code-block').querySelector('pre').innerText;
+            await navigator.clipboard.writeText(text);
+            const original = "COPY"; btn.innerText = "COPIED";
+            setTimeout(() => btn.innerText = original, 2000);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DH Python // Setup</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <aside>
+            <div class="brand">DH_PYTHON<span>//</span>101</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-home"></i> Start</a></li>
+                    <li><a href="setup.html" class="active"><i class="fa-solid fa-download"></i> Setup</a></li>
+                    <li><a href="workflow.html"><i class="fa-solid fa-folder-open"></i> Workflow</a></li>
+                    <li><a href="github.html"><i class="fa-brands fa-github"></i> Git & GitHub</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <section>
+                <section>
+                    <h1>System Setup</h1>
+                    <p class="lead">Prepare your computer for Python-based Digital Humanities work or check out
+                        cloud-based alternatives.</p>
+
+                    <div class="tabs-container">
+
+                        <div class="tabs-header">
+                            <button class="tab-btn outer-tab-btn active" onclick="openOuterTab(event,'local')">
+                                <i class="fa-solid fa-laptop"></i> Local Setup
+                            </button>
+                            <button class="tab-btn outer-tab-btn" onclick="openOuterTab(event,'cloud')">
+                                <i class="fa-solid fa-cloud"></i> Cloud Setup
+                            </button>
+                        </div>
+
+                        <div id="local" class="tab-content outer-tab-content active">
+
+                            <p>Set up your local development environment for Python-based Digital Humanities work.</p>
+
+                            <div class="tabs-container">
+
+                                <div class="tabs-header">
+                                    <button class="tab-btn inner-tab-btn active" onclick="openInnerTab(event,'win')">
+                                        <i class="fa-brands fa-windows"></i> Windows
+                                    </button>
+                                    <button class="tab-btn inner-tab-btn" onclick="openInnerTab(event,'mac')">
+                                        <i class="fa-brands fa-apple"></i> macOS
+                                    </button>
+                                    <button class="tab-btn inner-tab-btn" onclick="openInnerTab(event,'linux')">
+                                        <i class="fa-brands fa-linux"></i> Linux
+                                    </button>
+                                </div>
+
+                                <div id="win" class="tab-content inner-tab-content active">
+                                    <h3>Step 1: Install Python</h3>
+                                    <p>Download the latest Python installer from <a
+                                            href="https://www.python.org/downloads/windows/" class="link"
+                                            target="_blank">python.org</a>. Run the installer and ensure you
+                                        check the box <b style="color: var(--accent-red);">Add Python to PATH</b> on the
+                                        first screen.</p>
+                                    <p>Check the installation by opening a new terminal or PowerShell window and
+                                        running:
+                                    </p>
+                                    <div class="code-block">
+                                        <div class="code-header"><span>POWERSHELL</span><button class="copy-btn"
+                                                onclick="copyCode(this)">COPY</button></div>
+                                        <pre>python --version</pre>
+                                    </div>
+                                </div>
+
+                                <div id="mac" class="tab-content inner-tab-content">
+                                    <h3>Step 1: Install Python</h3>
+                                    <p> You can use <a href="https://brew.sh/" class="link" target="_blank">Homebrew</a>
+                                        to
+                                        install
+                                        the interpreter to avoid conflicts
+                                        with the system Python:</p>
+                                    <div class="code-block">
+                                        <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
+                                                onclick="copyCode(this)">COPY</button></div>
+                                        <pre>brew install python</pre>
+                                    </div>
+                                </div>
+
+                                <div id="linux" class="tab-content inner-tab-content">
+                                    <h3>Step 1: Install Python</h3>
+                                    <p>Use your distribution's package manager and install the desired version. Check
+                                        all
+                                        available versions at <a href="https://www.python.org/downloads/"
+                                            target="_blank">python.org</a>.</p>
+                                    <div class="code-block">
+                                        <div class="code-header"><span>BASH</span><button class="copy-btn"
+                                                onclick="copyCode(this)">COPY</button></div>
+                                        <pre>sudo apt update
+sudo apt upgrade
+sudo apt install python[VERSION]</pre>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <h3>Step 2: Choose an Editor</h3>
+                            <p>
+                                Select a code editor for writing and running your Python scripts.
+                            </p>
+                            <div class="warning-box">
+                                <div class="warning-icon">
+                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                </div>
+
+                                <p>VS Code is a product of Microsoft and collects telemetry data.</p>
+                            </div>
+                            <div class="module-grid">
+                                <a href="https://code.visualstudio.com/Download" class="card-link-red" target="_blank">
+                                    <div>
+                                        <h3>
+                                            <i class="fa-brands fa-microsoft" style="color:var(--accent-red)"></i>
+                                            VS Code
+                                        </h3>
+                                        <p>Free, widely used local editor.</p>
+                                    </div>
+                                </a>
+
+                                <a href="https://github.com/VSCodium/vscodium/releases" class="card-link"
+                                    target="_blank">
+                                    <div>
+                                        <h3><i class="fa-solid fa-code" style="color:var(--accent-blue)"></i> VSCodium
+                                        </h3>
+                                        <p>An open-source build of VSCode without proprietary components.
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="cloud" class="tab-content outer-tab-content">
+
+                            <h3>Cloud-Based Development</h3>
+
+                            <p>
+                                Choose a browser-based Python environment
+                                without local installation.
+                            </p>
+
+                            <div class="warning-box">
+                                <div class="warning-icon">
+                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                </div>
+
+                                <p>Google Colab is operated by Google, collects usage data, and requires a Google
+                                    account.</p>
+                            </div>
+
+                            <div class="module-grid">
+                                <a href="https://colab.research.google.com/" class="card-link-red" target="_blank">
+                                    <div>
+                                        <h3><i class="fa-brands fa-google" style="color:var(--accent-red)"></i> Google
+                                            Colab
+                                        </h3>
+                                        <p>A browser-based Python environment. No installation required.</p>
+                                    </div>
+                                </a>
+
+                                <a href="https://jupyter-cloud.gwdg.de/jhub/hub/spawn" class="card-link"
+                                    target="_blank">
+                                    <div>
+                                        <h3><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="15"
+                                                viewBox="0 1.031 55.729 51.354"
+                                                enable-background="new 0 1.031 55.729 51.354">
+                                                <path fill="#1E3A8A"
+                                                    d="M31.105 20.473H21.31c-3.481.0-5.468.521-5.468 5.257v4.743c0 3.227.951 5.234 4.364 5.234h2.777c3.061.0 3.779-1.174 3.779-3.688V27.37c0-1.616 1.32-2.939 2.938-2.939h5.962c1.615.0 2.939 1.324 2.939 2.939v4.33c0 3.995 3.11 3.686 5.791 3.686h7.114c2.321.0 4.221 1.898 4.221 4.219v8.562c0 2.319-1.899 4.219-4.221 4.219h-8.56c-2.321.0-4.219-1.898-4.219-4.219v-7.016c0-3.093-.669-4.881-4.561-4.881h-2.304c-2.745.0-4.559.756-4.559 4.1v4.379c0 1.645-1.344 2.984-2.985 2.984h-6.053c-1.644.0-2.985-1.341-2.985-2.984v-4.082c0-3.842-2.004-4.846-5.742-4.846h-5.61C1.77 35.819.0 34.049.0 31.885v-7.978c0-2.161 1.771-3.933 3.932-3.933h6.06c4.523.0 5.493-1.607 5.493-5.457V4.852c0-2.101 1.719-3.821 3.821-3.821h11.8c2.101.0 3.819 1.72 3.819 3.821v11.8C34.925 18.753 33.206 20.473 31.105 20.473" />
+                                            </svg> Jupyter Cloud</h3>
+                                        <p>Browser-based Jupyter Notebook environment hosted by the university.
+                                            No installation required.</p>
+                                    </div>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <footer>
+                    <p>Göttingen Centre for Digital Humanities (GCDH) &copy; 2026</p>
+                </footer>
+
+        </main>
+    </div>
+
+    <script>
+        function openOuterTab(evt, tabId) {
+
+            document.querySelectorAll('.outer-tab-content').forEach(tab => tab.style.display = "none");
+            document.querySelectorAll('.outer-tab-btn').forEach(btn => btn.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        function openInnerTab(evt, tabId) {
+            const localSection = document.getElementById("local");
+
+            localSection.querySelectorAll('.inner-tab-content').forEach(tab => tab.style.display = "none");
+            localSection.querySelectorAll('.inner-tab-btn').forEach(btn => btn.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        async function copyCode(btn) {
+            const text = btn.closest('.code-block').querySelector('pre').innerText;
+
+            await navigator.clipboard.writeText(text);
+
+            const original = "COPY";
+            btn.innerText = "COPIED";
+            setTimeout(() => btn.innerText = original, 2000);
+        }
+    </script>
+
+</body>
+
+</html>

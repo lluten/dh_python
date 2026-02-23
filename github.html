@@ -1,0 +1,366 @@
+<!--
+Structure:
+
+1. The Big Picture (Concepts)
+
+    Git (Local Time Machine) vs. GitHub (The Cloud).
+
+2. The Cloud Setup
+
+    Create a GitHub Account.
+
+    Create a new, empty repository (with a README).
+
+3. The Local Engine (Install)
+
+    Install Git (Using your OS tabs).
+
+    Set global identity (user.name and user.email).
+
+4. The Security Layer (The SSH Setup)
+
+    The Concept: Explain public/private keys simply.  (The public key is the padlock you give to GitHub; the private key stays hidden on your computer).
+
+    Step A: Generation. Run ssh-keygen in the terminal. (Tell them to just press "Enter" to all prompts to avoid password-protecting the key, which causes headaches later).
+
+    Step B: Copying. How to view and copy the Public key. (This needs OS tabs: cat ~/.ssh/id_rsa.pub | pbcopy on Mac vs clip < ~/.ssh/id_rsa.pub on Windows).
+
+    Step C: Pasting. Where to paste it in GitHub's settings.
+
+    Step D: The Test. Running ssh -T git@github.com to verify the connection works before they try anything else.
+
+5. The Handshake (Clone)
+
+    Getting the code onto their machine.
+
+    CRITICAL POINT: You must explicitly warn them to click the SSH tab on GitHub when copying the clone URL. If they copy the HTTPS URL, Git will ignore their new SSH keys and ask for a password anyway. This is the #1 mistake students make here.
+
+    Run git clone git@github....
+
+6. The Daily Loop (Solo Workflow)
+
+    The Shopping Cart metaphor: Stage -> Commit -> Sync/Push.
+
+    Recommend using the VS Code graphical interface for this, as we discussed, so they don't have to juggle terminal commands while learning the Git mental model.
+
+7. Team Workflows (Advanced)
+
+    Branching concepts.
+
+    Merging and Pull Requests.
+<-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DH Python // GitHub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="layout">
+        <aside>
+            <div class="brand">DH_PYTHON<span>//</span>101</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-home"></i> Start</a></li>
+                    <li><a href="setup.html"><i class="fa-solid fa-download"></i> Setup</a></li>
+                    <li><a href="workflow.html"><i class="fa-solid fa-folder-open"></i> Workflow</a></li>
+                    <li><a href="github.html" class="active"><i class="fa-brands fa-github"></i> Git & GitHub</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <section>
+                <h1>Git & GitHub</h1>
+                <p class="lead">Version control is the safety net for your code. Learn how to save your history and
+                    collaborate.</p>
+
+                <div class="hint-box">
+                    <div class="hint-content">
+                        <h3>Version Control</h3>
+                        <p> Git is a version control system that tracks changes in your code and lets you revert to
+                            earlier versions.
+
+                            Using Git and GitHub supports collaboration, reproducibility, and safe backup of your work.
+                        </p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                    <p>The instructions provided are just one approach to configuring and utilizing Git. Because Git is
+                        highly adaptable, it supports a wide variety of workflows. For further details, please refer to
+                        the official <a href="https://git-scm.com/book/en/v2" target="_blank" class="link">Git
+                            documentation</a> or <a href="https://docs.github.com/en" target="_blank"
+                            class="link">GitHub documentation</a>.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>01. Preparation</h2>
+                <p>To use <a href="https://github.com/" target="_blank">GitHub</a>, you need a GitHub account. You can
+                    create one at <a href="https://github.com/signup" target="_blank">github.com/signup</a>.</p>
+                <p>Additionally, you must install the Git software on your machine:</p>
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" onclick="openTab('win')">
+                            <i class="fa-brands fa-windows"></i> Windows
+                        </button>
+                        <button class="tab-btn" onclick="openTab('mac')">
+                            <i class="fa-brands fa-apple"></i> macOS
+                        </button>
+                        <button class="tab-btn" onclick="openTab('linux')">
+                            <i class="fa-brands fa-linux"></i> Linux
+                        </button>
+                    </div>
+
+                    <div id="win" class="tab-content active">
+                        <p>Download the installer from <a href="https://git-scm.com/download/win"
+                                target="_blank">git-scm.com</a> and run. You can click "Next" through most options, but
+                            we recommend selecting
+                            <b style="color: var(--accent-red)">Use Visual Studio Code as Git's default editor</b> if
+                            asked.
+                        </p>
+                        <p>You can verify the installation in PowerShell:</p>
+                        <div class="code-block">
+                            <div class="code-header"><span>POWERSHELL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre>git --version</pre>
+                        </div>
+                        <p>Git needs to know who you are. This information is attached to every <t
+                                style="color: var(--accent-red)">Commit</t> you make.</p>
+
+                        <div class="code-block">
+                            <div class="code-header"><span>POWERSHELL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre># 1. Set your username
+git config --global user.name "Your Name"
+
+# 2. Set your email (must match your GitHub account)
+git config --global user.email "you@example.com"</pre>
+                        </div>
+                    </div>
+
+                    <div id="mac" class="tab-content">
+                        <p> You can use <a href="https://brew.sh/" class="link" target="_blank">Homebrew</a> to install
+                            Git:</p>
+                        <div class="code-block">
+                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre>brew install git</pre>
+                        </div>
+                        <p>Alternatively, typing <code>git</code> in the terminal may trigger the Apple Command Line
+                            Tools installer.</p>
+                        <p>Git needs to know who you are. This information is attached to every <t
+                                style="color: var(--accent-red)">Commit</t> you make.</p>
+
+                        <div class="code-block">
+                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre># 1. Set your username
+git config --global user.name "Your Name"
+
+# 2. Set your email (must match your GitHub account)
+git config --global user.email "you@example.com"</pre>
+                        </div>
+                    </div>
+
+                    <div id="linux" class="tab-content">
+                        <p>Use your package manager:</p>
+                        <div class="code-block">
+                            <div class="code-header"><span>BASH</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre>sudo apt install git</pre>
+                        </div>
+                        <p>Git needs to know who you are. This information is attached to every <t
+                                style="color: var(--accent-red)">Commit</t> you make.</p>
+
+                        <div class="code-block">
+                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
+                                    onclick="copyCode(this)">COPY</button></div>
+                            <pre># 1. Set your username
+git config --global user.name "Your Name"
+
+# 2. Set your email (must match your GitHub account)
+git config --global user.email "you@example.com"</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>02. SSH Keys</h2>
+                <p>SSH keys allow you to securely connect to GitHub without entering your password every time.</p>
+                <p>Follow the <a
+                        href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
+                        target="_blank" class="link">GitHub documentation</a> to generate and add an SSH key.</p>
+            </section>
+            <section>
+                <h2>03. Connect to GitHub</h2>
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" onclick="openTab('new')">Creating a new Project</button>
+                        <button class="tab-btn" onclick="openTab('existing')">Linking an existing Project</button>
+                    </div>
+                </div>
+                <div id="new" class="tab-content active">
+                    <h3>Create a new repository</h3>
+                    <p>To create a new repository on GitHub, go to <a href="https://github.com/new"
+                            target="_blank">GitHub's new repository page</a>. Make sure to select the Python template
+                        when creating a <b style="color:var(--accent-red)">.gitignore</b> file.</p>
+
+                    <h3>Clone the repository</h3>
+                    <p>After creating the repository on GitHub, you can clone it to your local machine using the <b
+                            style="color:var(--accent-blue)">SSH URL</b> from your repository's page.</p>
+                    <div class="code-block">
+                        <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
+                                onclick="copyCode(this)">COPY</button></div>
+                        <pre>git clone <b style="color:var(--accent-blue)">git@github.com:YourUsername/YourProject.git</b></pre>
+                    </div>
+                </div>
+
+                <div id="existing" class="tab-content">
+                    <h3>Create a new repository</h3>
+                    <p>To create a new repository on GitHub, go to <a href="https://github.com/new"
+                            target="_blank">GitHub's new
+                            repository page</a>.
+                    </p>
+                    <div class="warning-box">
+                        <div class="warning-icon">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <p>Make sure to initialize the repository <b>without</b> a README or gitignore file.</p>
+                    </div>
+
+                    <h3>Prepare your local project</h3>
+                    <p>Create a file in your project folder named <b style="color:var(--accent-red)">.gitignore</b>,
+                        starting with a dot, and with no
+                        other file extensions. This file tells Git which files or folders to ignore when tracking your
+                        changes.</p>
+                    <p>Open the .gitignore file in a text editor and add the following line to ignore your virtual
+                        environment folder:</p>
+                    <div class="code-block">
+                        <div class="code-header"><span>TEXT</span><button class="copy-btn"
+                                onclick="copyCode(this)">COPY</button>
+                        </div>
+                        <pre>.venv/</pre>
+                    </div>
+
+                    <h3>Initialize Git and push to GitHub</h3>
+                    <p>Initialize Git in your local project, mark all files for tracking, commit them and push them
+                        to
+                        your GitHub repository, using your <b style="color:var(--accent-blue)">SSH URL</b>.</p>
+                    <div class="code-block">
+                        <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
+                                onclick="copyCode(this)">COPY</button></div>
+                        <pre>git init
+git add . 
+git commit -m "<b style="color:var(--text-muted)">chore: init</b>"
+git branch -M main
+git remote add origin <b style="color:var(--accent-blue)">git@github.com:YourUsername/YourProject.git</b>
+git push -u origin main</pre>
+
+                    </div>
+            </section>
+
+
+            <section>
+                <h2>04. The Workflow</h2>
+
+
+                <p> The basic Git workflow works in three steps:</p>
+                <t>
+                    <b style="color: var(--accent-red)">Add</b> (staging changes),
+                    <b style="color: var(--accent-red)">Commit</b> (saving changes locally), and
+                    <b style="color: var(--accent-red)">Push</b> (uploading changes to GitHub)
+                </t>
+
+                <h3>1. Add</h3>
+                <p>Adding files means marking them for inclusion in the next commit (staging). You can either mark all files in
+                    your project folder using a . or select specific files.</p>
+                <div class="code-block">
+                    <div class="code-header"><span>CMD</span><button class="copy-btn"
+                            onclick="copyCode(this)">COPY</button>
+                    </div>
+                    <pre>git add .</pre>
+                </div>
+
+                <h3>2. Commit</h3>
+                <p>Committing files means saving them locally with a descriptive message. This creates a snapshot of
+                    your project at that moment. </p>
+                <p>Especially when working in a team, it's important to write clear and
+                    descriptive commit messages so that others can understand what changes were made. You can find a
+                    good convention for commit messages <a
+                        href="https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13" target="_blank">here</a>.
+                </p>
+                <div class="code-block">
+                    <div class="code-header"><span>CMD</span><button class="copy-btn"
+                            onclick="copyCode(this)">COPY</button>
+                    </div>
+                    <pre>git commit -m "<b style="color:var(--text-muted)">feat: add email notifications on new direct messages</b>"</pre>
+                </div>
+
+                <h3>3. Push</h3>
+                <p>Pushing files means uploading your local commits to GitHub.</p>
+                <div class="code-block">
+                    <div class="code-header"><span>CMD</span><button class="copy-btn"
+                            onclick="copyCode(this)">COPY</button>
+                    </div>
+                    <pre>git push</pre>
+
+                </div>
+            </section>
+            <section>
+                <h2>05. Working with Branches (Advanced)</h2>
+                <p>Branches are used to isolate work in progress from the main branch. This allows you to collaborate on different features without interfering with each other's work.</p>
+            </section>
+
+            <footer>
+                <p>Göttingen Centre for Digital Humanities (GCDH) &copy; 2026</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function openTab(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+
+        function openInnerTab(evt, tabId) {
+            const localSection = document.getElementById("local");
+
+            localSection.querySelectorAll('.inner-tab-content').forEach(tab => tab.style.display = "none");
+            localSection.querySelectorAll('.inner-tab-btn').forEach(btn => btn.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        async function copyCode(btn) {
+            const text = btn.closest('.code-block').querySelector('pre').innerText;
+            await navigator.clipboard.writeText(text);
+            const original = "COPY"; btn.innerText = "COPIED";
+            setTimeout(() => btn.innerText = original, 2000);
+        }
+    </script>
+
+</body>
+
+</html>
