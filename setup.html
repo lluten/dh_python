@@ -24,7 +24,7 @@
                     <li><a href="index.html"><i class="fa-solid fa-home"></i> Start</a></li>
                     <li><a href="setup.html" class="active"><i class="fa-solid fa-download"></i> Setup</a></li>
                     <li><a href="workflow.html"><i class="fa-solid fa-folder-open"></i> Workflow</a></li>
-                    <li><a href="github.html"><i class="fa-brands fa-github"></i> Git & GitHub</a></li>
+                    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Resources</a></li>
                 </ul>
             </nav>
         </aside>
@@ -76,7 +76,7 @@
                                         running:
                                     </p>
                                     <div class="code-block">
-                                        <div class="code-header"><span>POWERSHELL</span><button class="copy-btn"
+                                        <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
                                                 onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></i></button></div>
                                         <pre>python --version</pre>
                                     </div>
@@ -103,7 +103,7 @@
                                         available versions at <a href="https://www.python.org/downloads/"
                                             target="_blank">python.org</a>.</p>
                                     <div class="code-block">
-                                        <div class="code-header"><span>BASH</span><button class="copy-btn"
+                                        <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
                                                 onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
                                         <pre>sudo apt update
 sudo apt upgrade
@@ -123,26 +123,32 @@ sudo apt install python[VERSION]</pre>
 
                                 <p>VS Code is a product of Microsoft and collects telemetry data.</p>
                             </div>
-                            <div class="module-grid">
-                                <a href="https://code.visualstudio.com/Download" class="card-link-red" target="_blank">
-                                    <div>
-                                        <h3>
-                                            <i class="fa-brands fa-microsoft" style="color:var(--accent-red)"></i>
-                                            VS Code
-                                        </h3>
-                                        <p>Free, widely used local editor.</p>
-                                    </div>
-                                </a>
+                            <div class="module-grid setup-options-grid">
+                                <div class="recommended-option">
+                                    <a href="https://github.com/VSCodium/vscodium/releases" class="card-link"
+                                        target="_blank">
+                                        <div>
+                                            <h3><i class="fa-solid fa-code" style="color:var(--accent-blue)"></i> VSCodium
+                                            </h3>
+                                            <p>An open-source build of VSCode without proprietary components.
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <p class="recommendation-note">Recommended choice for this lecture.</p>
+                                </div>
 
-                                <a href="https://github.com/VSCodium/vscodium/releases" class="card-link"
-                                    target="_blank">
-                                    <div>
-                                        <h3><i class="fa-solid fa-code" style="color:var(--accent-blue)"></i> VSCodium
-                                        </h3>
-                                        <p>An open-source build of VSCode without proprietary components.
-                                        </p>
-                                    </div>
-                                </a>
+                                <div class="recommended-option">
+                                    <a href="https://code.visualstudio.com/Download" class="card-link-red" target="_blank">
+                                        <div>
+                                            <h3>
+                                                <i class="fa-brands fa-microsoft" style="color:var(--accent-red)"></i>
+                                                VS Code
+                                            </h3>
+                                            <p>Free, widely used local editor.</p>
+                                        </div>
+                                    </a>
+                                    <p class="recommendation-note recommendation-note-placeholder">Recommended choice for this lecture.</p>
+                                </div>
                             </div>
                         </div>
 
@@ -164,30 +170,36 @@ sudo apt install python[VERSION]</pre>
                                     account.</p>
                             </div>
 
-                            <div class="module-grid">
-                                <a href="https://colab.research.google.com/" class="card-link-red" target="_blank">
-                                    <div>
-                                        <h3><i class="fa-brands fa-google" style="color:var(--accent-red)"></i> Google
-                                            Colab
-                                        </h3>
-                                        <p>A browser-based Python environment. No installation required.</p>
-                                    </div>
-                                </a>
+                            <div class="module-grid setup-options-grid">
+                                <div class="recommended-option">
+                                    <a href="https://jupyter-cloud.gwdg.de/jhub/hub/spawn" class="card-link"
+                                        target="_blank">
+                                        <div>
+                                            <h3><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="15"
+                                                    viewBox="0 1.031 55.729 51.354"
+                                                    enable-background="new 0 1.031 55.729 51.354">
+                                                    <path fill="#1E3A8A"
+                                                        d="M31.105 20.473H21.31c-3.481.0-5.468.521-5.468 5.257v4.743c0 3.227.951 5.234 4.364 5.234h2.777c3.061.0 3.779-1.174 3.779-3.688V27.37c0-1.616 1.32-2.939 2.938-2.939h5.962c1.615.0 2.939 1.324 2.939 2.939v4.33c0 3.995 3.11 3.686 5.791 3.686h7.114c2.321.0 4.221 1.898 4.221 4.219v8.562c0 2.319-1.899 4.219-4.221 4.219h-8.56c-2.321.0-4.219-1.898-4.219-4.219v-7.016c0-3.093-.669-4.881-4.561-4.881h-2.304c-2.745.0-4.559.756-4.559 4.1v4.379c0 1.645-1.344 2.984-2.985 2.984h-6.053c-1.644.0-2.985-1.341-2.985-2.984v-4.082c0-3.842-2.004-4.846-5.742-4.846h-5.61C1.77 35.819.0 34.049.0 31.885v-7.978c0-2.161 1.771-3.933 3.932-3.933h6.06c4.523.0 5.493-1.607 5.493-5.457V4.852c0-2.101 1.719-3.821 3.821-3.821h11.8c2.101.0 3.819 1.72 3.819 3.821v11.8C34.925 18.753 33.206 20.473 31.105 20.473" />
+                                                </svg> Jupyter Cloud</h3>
+                                            <p>Browser-based Jupyter Notebook environment hosted by the university.
+                                                No installation required.</p>
+                                        </div>
+                                    </a>
+                                    <p class="recommendation-note">Recommended choice for this lecture.</p>
+                                </div>
 
-                                <a href="https://jupyter-cloud.gwdg.de/jhub/hub/spawn" class="card-link"
-                                    target="_blank">
-                                    <div>
-                                        <h3><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="15"
-                                                viewBox="0 1.031 55.729 51.354"
-                                                enable-background="new 0 1.031 55.729 51.354">
-                                                <path fill="#1E3A8A"
-                                                    d="M31.105 20.473H21.31c-3.481.0-5.468.521-5.468 5.257v4.743c0 3.227.951 5.234 4.364 5.234h2.777c3.061.0 3.779-1.174 3.779-3.688V27.37c0-1.616 1.32-2.939 2.938-2.939h5.962c1.615.0 2.939 1.324 2.939 2.939v4.33c0 3.995 3.11 3.686 5.791 3.686h7.114c2.321.0 4.221 1.898 4.221 4.219v8.562c0 2.319-1.899 4.219-4.221 4.219h-8.56c-2.321.0-4.219-1.898-4.219-4.219v-7.016c0-3.093-.669-4.881-4.561-4.881h-2.304c-2.745.0-4.559.756-4.559 4.1v4.379c0 1.645-1.344 2.984-2.985 2.984h-6.053c-1.644.0-2.985-1.341-2.985-2.984v-4.082c0-3.842-2.004-4.846-5.742-4.846h-5.61C1.77 35.819.0 34.049.0 31.885v-7.978c0-2.161 1.771-3.933 3.932-3.933h6.06c4.523.0 5.493-1.607 5.493-5.457V4.852c0-2.101 1.719-3.821 3.821-3.821h11.8c2.101.0 3.819 1.72 3.819 3.821v11.8C34.925 18.753 33.206 20.473 31.105 20.473" />
-                                            </svg> Jupyter Cloud</h3>
-                                        <p>Browser-based Jupyter Notebook environment hosted by the university.
-                                            No installation required.</p>
-                                    </div>
-                                </a>
+                                <div class="recommended-option">
+                                    <a href="https://colab.research.google.com/" class="card-link-red" target="_blank">
+                                        <div>
+                                            <h3><i class="fa-brands fa-google" style="color:var(--accent-red)"></i> Google
+                                                Colab
+                                            </h3>
+                                            <p>A browser-based Python environment. No installation required.</p>
+                                        </div>
+                                    </a>
+                                    <p class="recommendation-note recommendation-note-placeholder">Recommended choice for this lecture.</p>
+                                </div>
 
                             </div>
 

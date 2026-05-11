@@ -19,9 +19,9 @@
     /* Slate 200 */
 
     /* --- Accents --- */
-    --accent-blue: #1E3A8A;
+    --accent-blue: #102542;
     /* Deep Blue */
-    --accent-red: #FF5252;
+    --accent-red: #F87060;
     /* Coral */
     --accent-yellow: #FBBF2499;
 
@@ -356,6 +356,42 @@ pre {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
+}
+
+.resources-grid {
+    grid-template-columns: 1fr;
+}
+
+.recommended-option {
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendation-note {
+    margin: 0.45rem 0 0 0.35rem;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.1;
+}
+
+.setup-options-grid {
+    align-items: stretch;
+}
+
+.setup-options-grid .recommended-option {
+    display: flex;
+    flex-direction: column;
+}
+
+.setup-options-grid .recommended-option .card-link,
+.setup-options-grid .recommended-option .card-link-red {
+    flex: 1;
+}
+
+.recommendation-note-placeholder {
+    visibility: hidden;
 }
 
 .card-link {
