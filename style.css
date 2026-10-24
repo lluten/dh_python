@@ -643,3 +643,52 @@ footer {
     font-family: 'Roboto Mono', monospace;
     letter-spacing: -0.03em;
 }
+/* Practical guides and the lecture resource collection. */
+main { min-width: 0; }
+aside { flex-shrink: 0; }
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 1.5rem; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--accent-red); outline-offset: 4px; }
+.eyebrow, .resource-meta { color: var(--text-muted); font-size: .85rem; }
+.resource-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; margin-top: 2rem; }
+.resource-controls[hidden] { display: none; }
+.resource-controls label { display: flex; flex: 1 1 180px; flex-direction: column; gap: .4rem; font-size: .9rem; }
+.resource-controls select, .resource-controls input, .resource-controls button { font: inherit; color: var(--text-main); background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: .7rem; min-width: 0; max-width: 100%; }
+.resource-controls button { cursor: pointer; }
+details { border-bottom: 1px solid var(--border); padding: 1rem 0; }
+summary { cursor: pointer; font-weight: 500; }
+details p { margin: .8rem 0 .2rem; }
+li { margin-bottom: .7rem; }
+code { overflow-wrap: anywhere; }
+pre code { overflow-wrap: normal; }
+@media (max-width: 480px) { .module-grid { grid-template-columns: 1fr; } h1 { font-size: 2rem; } main { padding: 2rem 1.1rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* Consistent, minimal page openings and plain resource references. */
+.page-header { margin-bottom: 2.5rem; }
+.page-header .lead { margin: 0; }
+.start-steps { padding-left: 1.4rem; }
+.start-steps li { padding-left: .25rem; margin-bottom: 1rem; }
+.resource-entry { margin-bottom: 1.25rem; }
+.resource-entry p { margin: 0; }
+.resource-entry .resource-meta { margin-top: .2rem; font-size: .8rem; }
+.resource-entry a { overflow-wrap: anywhere; }
+#resource-list section { margin-bottom: 2.5rem; }
+#resource-list h2 { display: block; border: 0; padding: 0; margin-bottom: 1rem; font-size: 1.25rem; }
+#resource-list h2::before { content: none; }
+.resource-controls { margin-top: 0; gap: .75rem; }
+.resource-controls select, .resource-controls input, .resource-controls button { padding: .45rem .6rem; }
+#resource-count { margin: .75rem 0 0; color: var(--text-muted); font-size: .85rem; }
+
+/* Section overview shares the existing sidebar rather than the page opening. */
+aside { overflow-y: auto; }
+.page-outline { border: 0; border-top: 1px solid var(--border); margin-top: 1.75rem; padding: 1rem 0 0; }
+.page-outline[hidden] { display: none; }
+.page-outline summary { color: var(--text-muted); font-size: .8rem; font-weight: 500; }
+.page-outline nav { margin-top: .65rem; }
+.page-outline nav li { margin-bottom: .15rem; }
+.page-outline nav a { border: 0; padding: .3rem .5rem; font-size: .85rem; line-height: 1.4; }
+@media (max-width: 900px) {
+    aside { overflow-y: visible; }
+    .page-outline { margin-top: 1rem; }
+}

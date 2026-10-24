@@ -20,135 +20,165 @@
             <div class="brand">DH_PYTHON<span>//</span>101</div>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fa-solid fa-home"></i> Start</a></li>
-                    <li><a href="setup.html"><i class="fa-solid fa-download"></i> Setup</a></li>
-                    <li><a href="workflow.html" class="active"><i class="fa-solid fa-folder-open"></i> Workflow</a></li>
-                    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+                    <li><a href="index.html"><i class="fa-solid fa-home"></i> Start</a>
+</li>
+                    <li><a href="setup.html"><i class="fa-solid fa-download"></i> Setup</a>
+</li>
+                    <li><a href="workflow.html" class="active" aria-current="page"><i class="fa-solid fa-folder-open"></i> Workflow</a>
+</li>
+                    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Resources</a>
+</li>
                 </ul>
             </nav>
-        </aside>
+        <details class="page-outline" open><summary>On this page</summary><nav aria-label="Page sections"><ul id="page-sections"><li><a href="#local">Run a local script</a></li><li><a href="#virtual-environments">Virtual environments</a></li><li><a href="#first-library">Install &amp; import a library</a></li><li><a href="#returning">Return to an exercise</a></li><li><a href="#notebook">Work in a notebook</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#files">Exercise data files</a></li><li><a href="#install-packages">Install spaCy &amp; NLTK</a></li><li><a href="#notebook-packages">Install in a notebook</a></li><li><a href="#nlp-data">spaCy models &amp; NLTK data</a></li></ul></nav></details>
+</aside>
 
         <main>
-            <section>
-                <h1>Project Setup</h1>
-                <p class="lead" style="margin-bottom: 1rem;">Setting up structured projects and managing virtual
-                    environments.</p>
-                <div class="hint-box">
-                    <div class="hint-content">
-                        <h3>Environments</h3>
-                        <p> A virtual environment is an isolated Python workspace with its own project-specific
-                            libraries.
+<header class="page-header">
+<h1>Start an exercise</h1>
+<p class="lead">Write a little code, run it, and check the result. These steps work for your first exercise and every one after it.</p>
+</header>
+<section id="local">
+<h2>On your computer</h2>
+<h3>1. Open your exercise folder</h3>
+<p>Create a folder such as <code>exercise-01</code> inside your <code>python-exercises</code> folder. In VSCodium or VS Code, choose <strong>File → Open Folder</strong> and select it.</p>
+<h3 id="virtual-environments">2. Create and activate your environment</h3>
+<p>A virtual environment keeps the Python packages for your project separate. Create <code>.venv</code> once per exercise folder, then activate it whenever you open a new terminal for that folder.</p>
+<p>Choose <strong>Terminal → New Terminal</strong> in your editor. Run the two lines for your system, one at a time:</p>
+<div class="code-block"><div class="code-header"><span>WINDOWS · POWERSHELL</span></div><pre><code>python -m venv .venv
+.\.venv\Scripts\Activate.ps1</code></pre></div>
+<div class="code-block"><div class="code-header"><span>macOS / LINUX · BASH OR ZSH</span></div><pre><code>python3 -m venv .venv
+source .venv/bin/activate</code></pre></div>
+<p>After activation, the prompt usually starts with <code>(.venv)</code>. Use <code>python</code> on all systems from this point on. Keep using this terminal to install packages and run scripts.</p>
+<details><summary>PowerShell blocks activation</summary><p>In the editor’s terminal menu, open a <strong>Command Prompt</strong> terminal in the same folder and run <code>.venv\Scripts\activate.bat</code>. You can also stay in PowerShell and use <code>.\.venv\Scripts\python.exe</code> instead of <code>python</code> for installation and running scripts; activation is then unnecessary.</p></details>
+<h3>3. Create and save a Python file</h3>
+<p>Create <code>exercise.py</code> in the exercise folder, alongside <code>.venv</code> (not inside it). Write this small example and save the file with Ctrl+S (Windows/Linux) or Cmd+S (macOS).</p>
+<div class="code-block">
+<div class="code-header"><span>PYTHON</span>
+</div><pre><code>name = &quot;Ada&quot;
+print(&quot;Hello,&quot;, name)</code></pre></div>
+<h3>4. Run the file</h3>
+<p>Save the file, then run this command in your activated terminal:</p>
+<div class="code-block"><div class="code-header"><span>TERMINAL · ACTIVATED ENVIRONMENT</span></div><pre><code>python exercise.py</code></pre></div>
+<p>The output appears in the terminal:</p>
+<div class="code-block">
+<div class="code-header"><span>EXPECTED OUTPUT</span>
+</div><pre><code>Hello, Ada</code></pre></div>
+<h3>5. Edit, save, and run again</h3>
+<p>Change <code>Ada</code> to your name. Save the file and repeat the command. Now replace the example with the first small step of your exercise. Use <code>print(...)</code> to inspect values as you work.</p>
+<p>Keep Python code in the <code>.py</code> file. Commands such as <code>python exercise.py</code> belong in the terminal.</p>
+<h3 id="first-library">6. Try a small library</h3>
+<p><code>humanize</code> makes numbers easier to read. Install it once in this environment:</p>
+<div class="code-block"><div class="code-header"><span>TERMINAL · ACTIVATED ENVIRONMENT</span></div><pre><code>python -m pip install humanize</code></pre></div>
+<p>Replace the contents of <code>exercise.py</code> with this example, then save it:</p>
+<div class="code-block"><div class="code-header"><span>PYTHON · exercise.py</span></div><pre><code>import humanize
 
-                            Creating a new environment for each project prevents dependency conflicts, ensures
-                            reproducibility, and keeps your code stable and easier to maintain.
-                    </div>
-                </div>
-                <div class="tabs-container">
-                    <div class="tabs-header">
-                        <button class="tab-btn active" onclick="openTab('win')">
-                            <i class="fa-brands fa-windows"></i> Windows
-                        </button>
-                        <button class="tab-btn" onclick="openTab('mac')">
-                            <i class="fa-brands fa-apple"></i>
-                            macOS
-                        </button>
-                        <button class="tab-btn" onclick="openTab('linux')">
-                            <i class="fa-brands fa-linux"></i>
-                            Linux
-                        </button>
-                    </div>
-
-                    <div id="win" class="tab-content active">
-                        <h3>Step 1: Create a Project Folder</h3>
-                        <p>Create a new folder for your project. You can do this in your file explorer or using the
-                            terminal:</p>
-                        <div class="code-block">
-                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
-                            <pre>mkdir PROJECT_NAME
-cd PROJECT_NAME</pre>
-                        </div>
-                        <h3>Step 2: Virtual Environment</h3>
-                        <p>In the project folder, create a virtual environment and activate it:</p>
-                        <div class="code-block">
-                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
-                            <pre>python -m venv .venv
-.venv\Scripts\activate</pre>
-                        </div>
-                    </div>
-                    <div id="mac" class="tab-content">
-                        <h3>Step 1: Create a Project Folder</h3>
-                        <p>Create a new folder for your project. You can do this in your file explorer or using the
-                            terminal:</p>
-                        <div class="code-block">
-                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
-                            <pre>mkdir PROJECT_NAME
-cd PROJECT_NAME</pre>
-                        </div>
-                        <h3>Step 2: Virtual Environment</h3>
-                        <p>In the project folder, create a virtual environment and activate it:</p>
-                        <div class="code-block">
-                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
-                            <pre>python3 -m venv .venv
-source .venv/bin/activate</pre>
-                        </div>
-                    </div>
-
-                    <div id="linux" class="tab-content">
-                        <h3>Step 1: Create a Project Folder</h3>
-                        <p>Create a new directory for your project. You can do this in your file explorer or using
-                            the
-                            terminal:</p>
-                        <div class="code-block">
-                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
-                            <pre>mkdir PROJECT_NAME
-cd PROJECT_NAME</pre>
-                        </div>
-                        <h3>Step 2: Virtual Environment</h3>
-                        <p>In the project directory, create a virtual environment and activate it:</p>
-                        <div class="code-block">
-                            <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                    onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
-                            <pre>python3 -m venv .venv
-source .venv/bin/activate</pre>
-                        </div>
-                    </div>
-                </div>
-                <h3>Step 3: Install Dependencies</h3>
-                <p>With the virtual environment activated, install required packages:</p>
-                <div class="code-block">
-                    <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                            onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
-                    <pre>pip install PACKAGE_NAME</pre>
-                </div>
-            </section>
-
-            <footer>
-                <p>Göttingen Centre for Digital Humanities (GCDH) &copy; 2026</p>
-            </footer>
-        </main>
-    </div>
-
-    <script>
-        function openTab(id) {
-            document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).style.display = 'block';
-            event.currentTarget.classList.add('active');
-        }
-
-        async function copyCode(btn) {
-            const text = btn.closest('.code-block').querySelector('pre').innerText;
-            await navigator.clipboard.writeText(text);
-            const textColor = btn.style.color;
-            btn.style.color = "#64748B4A";
-            setTimeout(() => btn.style.color = textColor, 330);
-        }
-    </script>
+word_count = 1000000
+print(humanize.intcomma(word_count))</code></pre></div>
+<p>Run <code>python exercise.py</code> again. The result is:</p>
+<div class="code-block"><div class="code-header"><span>EXPECTED OUTPUT</span></div><pre><code>1,000,000</code></pre></div>
+<p><code>pip install</code> adds a package to your environment. <code>import humanize</code> makes it available in your script. <code>intcomma</code> formats the number with separators. Built-in modules such as <code>math</code> and <code>random</code> need only an import.</p>
+<h3 id="returning">When you return to the exercise</h3>
+<p>Open the same folder and a terminal. Activate the existing environment using only the activation line for your system above, then run <code>python exercise.py</code>. You do not need to create the environment or install its packages again. Use <code>deactivate</code> when you want to leave the environment, or close the terminal.</p>
+</section>
+<section id="notebook">
+<h2>In your browser</h2>
+<ol>
+<li>Open Jupyter Cloud or Colab from <a href="setup.html">Setup</a> and create a Python notebook.</li>
+<li>Name it <code>exercise-01.ipynb</code>. Enter <code>name = "Ada"</code> and <code>print("Hello,", name)</code> on separate lines in a code cell.</li>
+<li>Press <strong>Shift + Enter</strong>. The output appears below the cell.</li>
+<li>Change the name and run the cell again. Add cells for the next steps of the exercise and run them from top to bottom.</li>
+<li>Save the notebook and download a copy before you finish.</li>
+</ol>
+<p>Jupyter Cloud and Colab manage the running environment, so you do not create or activate a <code>.venv</code> here. To try the same library example, run <code>%pip install humanize</code> in a code cell, then run the <code>import humanize</code> example in the next cell.</p>
+<p>A notebook remembers variables from cells you have run. After restarting its kernel or runtime, run the cells again from the top. If your assignment requires a <code>.py</code> file, follow its submission instructions or use the local workflow above.</p>
+</section>
+<section id="troubleshooting">
+<h2>If it does not run</h2>
+<details>
+<summary>Python is not found</summary>
+<p>Check <code>python --version</code> on Windows or <code>python3 --version</code> on macOS/Linux. On Windows, try <code>py --version</code>; if that works, create the environment with <code>py -m venv .venv</code>, then activate it and use <code>python exercise.py</code>. Close and reopen the terminal after installation. Revisit <a href="setup.html">Setup</a> if none works.</p>
+</details>
+<details>
+<summary>“Can’t open file” or the wrong result appears</summary>
+<p>Save your file. Check that it is named <code>exercise.py</code>, not <code>exercise.py.txt</code>. Open its folder in the editor and create a new terminal there. Use <code>dir</code> on Windows or <code>ls</code> on macOS/Linux to check that the file is listed.</p>
+</details>
+<details>
+<summary>I see &gt;&gt;&gt;, or a terminal command gives a SyntaxError</summary>
+<p>You are in Python’s interactive prompt. Enter <code>exit()</code>, then run <code>python exercise.py</code> after activating your environment in the terminal. Do not paste terminal commands into your Python file.</p>
+</details>
+<details>
+<summary>Nothing appears, or the program keeps running</summary>
+<p>Saving a value does not display it: use <code>print(value)</code>. Check whether your code is waiting at <code>input()</code>. To stop a running script, press Ctrl+C in the terminal; in a notebook use the stop/interrupt button.</p>
+</details>
+<details>
+<summary>A red error message appears</summary>
+<p>Read the last line for the error type, then find the line number in your file. Check spelling, quotes, and indentation. Change one thing and run again. If you ask for help, include the code and the full error message.</p>
+</details>
+<details>
+<summary>ModuleNotFoundError, missing model, or missing NLTK data</summary>
+<p>Activate your exercise’s environment before installing or running code. For the introductory example, run <code>python -m pip install humanize</code> there. For lecture 10b, follow <a href="#packages">the spaCy and NLTK instructions below</a>. spaCy models and NLTK data need separate downloads.</p>
+</details>
+</section>
+<section id="files">
+<h2>When your exercise uses data files</h2>
+<p class="eyebrow">Lectures 06a–b · Files, paths, and input/output</p>
+<p>Download the exercise data and place it beside <code>exercise.py</code>. For this example, create a UTF-8 text file called <code>text.txt</code> with one sentence in it.</p>
+<div class="code-block">
+<div class="code-header"><span>PYTHON</span>
+</div><pre><code>with open(&quot;text.txt&quot;, encoding=&quot;utf-8&quot;) as source:
+    text = source.read()
+print(text)</code></pre></div>
+<p>Run your script from that folder. A relative path such as <code>text.txt</code> is resolved from the current working folder. In a notebook, upload the file to the running session first. Colab’s Files panel has an upload button; in Jupyter, upload it beside your notebook.</p>
+<p>If Python cannot find the file, run this to see which folder it is using:</p>
+<div class="code-block">
+<div class="code-header"><span>PYTHON</span>
+</div><pre><code>import os
+print(os.getcwd())</code></pre></div>
+<p>Uploaded session files may disappear when a cloud session ends. Keep your original data and download your results. See <a href="resources.html?lecture=06b">lecture 06b resources</a> for references.</p>
+</section>
+<section id="packages">
+<h2>When your exercise needs additional packages</h2>
+<p class="eyebrow">Lecture 10b · spaCy and NLTK</p>
+<p>Use this section when the exercise asks for a library such as spaCy or NLTK. Built-in modules such as <code>re</code>, <code>os</code>, and <code>random</code> come with Python.</p>
+<h3 id="install-packages">Install packages locally</h3>
+<p>Activate the environment you already created for this exercise. Install the packages needed for lecture 10b:</p>
+<div class="code-block">
+<div class="code-header"><span>TERMINAL · ACTIVATED ENVIRONMENT</span>
+</div><pre><code>python -m pip install spacy nltk
+python -m spacy download en_core_web_sm</code></pre></div>
+<p>Run your exercise with <code>python exercise.py</code> in that same terminal.</p>
+<h3 id="notebook-packages">Install packages in a notebook</h3>
+<p>Install into the current notebook kernel by running these in separate code cells:</p>
+<div class="code-block">
+<div class="code-header"><span>NOTEBOOK CELL</span>
+</div><pre><code>%pip install spacy nltk</code></pre></div>
+<div class="code-block">
+<div class="code-header"><span>NOTEBOOK CELL</span>
+</div><pre><code>import spacy.cli
+spacy.cli.download(&quot;en_core_web_sm&quot;)</code></pre></div>
+<p>Restart the kernel/runtime after installation, then run your code from the top. Repeat installation if a new cloud session no longer has the packages.</p>
+<h3 id="nlp-data">Check spaCy and get NLTK data</h3>
+<div class="code-block">
+<div class="code-header"><span>PYTHON</span>
+</div><pre><code>import spacy
+nlp = spacy.load(&quot;en_core_web_sm&quot;)
+print([token.text for token in nlp(&quot;Hello Ada!&quot;)])</code></pre></div>
+<div class="code-block">
+<div class="code-header"><span>EXPECTED OUTPUT</span>
+</div><pre><code>[&#x27;Hello&#x27;, &#x27;Ada&#x27;, &#x27;!&#x27;]</code></pre></div>
+<p>NLTK downloads data separately. Run the following Python code for the tokenisation data introduced in 10b:</p>
+<div class="code-block">
+<div class="code-header"><span>PYTHON</span>
+</div><pre><code>import nltk
+nltk.download(&quot;punkt_tab&quot;)</code></pre></div>
+<p>For later exercises, download the dataset requested by the exercise or NLTK’s error message, such as <code>gutenberg</code>, <code>treebank</code>, <code>stopwords</code>, or <code>wordnet</code>. See <a href="resources.html?lecture=10b">10b resources</a> and <a href="resources.html?lecture=10c">10c resources</a>.</p>
+</section>
+<footer>
+<p>Göttingen Centre for Digital Humanities (GCDH) &copy; 2026</p>
+</footer>
+</main>
+</div>
+<script src="navigation.js" defer></script>
 </body>
-
 </html>

@@ -20,105 +20,215 @@
             <div class="brand">DH_PYTHON<span>//</span>101</div>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fa-solid fa-home"></i> Start</a></li>
-                    <li><a href="setup.html"><i class="fa-solid fa-download"></i> Setup</a></li>
-                    <li><a href="workflow.html"><i class="fa-solid fa-folder-open"></i> Workflow</a></li>
-                    <li><a href="resources.html" class="active"><i class="fa-solid fa-book"></i> Resources</a></li>
+                    <li><a href="index.html" aria-current="page"><i class="fa-solid fa-home"></i> Start</a>
+</li>
+                    <li><a href="setup.html"><i class="fa-solid fa-download"></i> Setup</a>
+</li>
+                    <li><a href="workflow.html"><i class="fa-solid fa-folder-open"></i> Workflow</a>
+</li>
+                    <li><a href="resources.html" class="active" aria-current="page"><i class="fa-solid fa-book"></i> Resources</a>
+</li>
                 </ul>
             </nav>
-        </aside>
+        <details class="page-outline" open hidden><summary>On this page</summary><nav aria-label="Page sections"><ul id="page-sections"></ul></nav></details>
+</aside>
 
         <main>
-            <section>
-                <h1>Recommended Resources</h1>
-                <p class="lead">Beginner-friendly links for learning Python in Digital Humanities workflows.</p>
-                <div class="hint-box">
-                    <div class="hint-content">
-                        <h3>About this page</h3>
-                        <p>This page collects recommended lookup resources used in the lecture. Use it as a quick
-                            reference whenever you need examples, syntax reminders, or documentation.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2>Python Practice and Basics</h2>
-                <div class="module-grid resources-grid">
-                    <a href="https://www.w3schools.com/python/" class="card-link" target="_blank">
-                        <div>
-                            <h3><i class="fa-solid fa-graduation-cap" style="color:var(--accent-blue)"></i> W3Schools
-                                Python</h3>
-                            <p>Use this for fast, practical exercises when you need to reinforce class topics like
-                                variables, loops, and lists. The short examples are great for quick revision before
-                                seminars.</p>
-                        </div>
-                    </a>
-
-                </div>
-            </section>
-
-            <section>
-                <h2>Regex Help</h2>
-                <div class="module-grid resources-grid">
-                    <a href="https://docs.python.org/3/library/re.html" class="card-link" target="_blank">
-                        <div>
-                            <h3><i class="fa-brands fa-python" style="color:var(--accent-blue)"></i> Python re
-                                documentation</h3>
-                            <p>The official reference for Python regular expressions, including syntax, flags, groups,
-                                and function behavior.</p>
-                        </div>
-                    </a>
-
-                    <a href="https://www.rexegg.com/regex-quickstart.html" class="card-link" target="_blank">
-                        <div>
-                            <h3><i class="fa-solid fa-bolt" style="color:var(--accent-blue)"></i> RexEgg Quickstart</h3>
-                            <p>A compact guide to core regex syntax and common patterns. Keep this open while building
-                                extraction patterns for archival text or metadata fields.</p>
-                        </div>
-                    </a>
-
-                    <a href="https://regex101.com/" class="card-link" target="_blank">
-                        <div>
-                            <h3><i class="fa-solid fa-magnifying-glass" style="color:var(--accent-blue)"></i> regex101
-                            </h3>
-                            <p>Use this to test expressions against real sample text, inspect match groups, and debug
-                                mistakes line by line before moving patterns into Python code.</p>
-                        </div>
-                    </a>
-                </div>
-            </section>
-
-            <section>
-                <h2>Digital Humanities Essentials</h2>
-                <div class="module-grid resources-grid">
-                    <a href="https://pandas.pydata.org/docs/getting_started/index.html" class="card-link"
-                        target="_blank">
-                        <div>
-                            <h3><i class="fa-solid fa-table" style="color:var(--accent-blue)"></i> pandas Getting Started
-                            </h3>
-                            <p>Essential reference for tabular data work in DH, including CSV imports, filtering,
-                                grouping, and cleanup tasks common in catalog and corpus preparation.</p>
-                        </div>
-                    </a>
-                </div>
-            </section>
-
-            <section>
-                <div class="hint-box">
-                    <div class="hint-content">
-                        <h3>Regular updates</h3>
-                        <p>This resource list is updated regularly during the lecture period as new needs and useful
-                            links come up.</p>
-                    </div>
-                </div>
-            </section>
-
-            <footer>
-                <p>Göttingen Centre for Digital Humanities (GCDH) &copy; 2026</p>
-            </footer>
-        </main>
-    </div>
-
+<header class="page-header">
+<h1>Resources</h1>
+<p class="lead">Find a tool, reference, or reading from your lecture.</p>
+</header>
+<section>
+<div class="resource-controls" hidden>
+<label>Group by<select id="group-by">
+<option value="lecture">Lecture order</option>
+<option value="topic">Topic</option>
+</select>
+</label>
+<label>Lecture<select id="lecture-filter">
+<option value="all">All lectures</option>
+<option value="01a">01a · Introduction and setup</option>
+<option value="03a">03a · Numbers</option>
+<option value="04a">04a · Regular expressions</option>
+<option value="04c">04c · Regex in Python</option>
+<option value="05b">05b · Tuples</option>
+<option value="06b">06b · Input/output in Python</option>
+<option value="08b">08b · Exceptions and debugging</option>
+<option value="09a">09a · References and identity</option>
+<option value="10b">10b · spaCy and NLTK</option>
+<option value="10b-fallback">10b · NLTK-only fallback</option>
+<option value="10c">10c · Corpora and language resources</option>
+<option value="11b">11b · Encapsulation and inheritance</option>
+<option value="extra">Additional resources</option>
+</select>
+</label>
+<label>Search<input id="resource-search" type="search" placeholder="e.g. regex, files, NLTK">
+</label><button id="reset-resources" type="button">Reset</button>
+</div>
+<p id="resource-count" role="status" aria-live="polite">
+</p>
+<noscript>
+<p>All resources are shown below. Enable JavaScript to group or filter them.</p>
+</noscript>
+</section>
+<div id="resource-list">
+<article class="resource-entry" data-topic="Python libraries" data-lectures="extra">
+<p><strong><a href="https://humanize.readthedocs.io/en/stable/number/" target="_blank" rel="noopener noreferrer">humanize number formatting</a></strong> — Reference for the small install-and-import example in Workflow.</p>
+<p class="resource-meta">Python libraries · Workflow example · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="Setup" data-lectures="01a">
+<p><strong><a href="https://www.python.org" target="_blank" rel="noopener noreferrer">Python</a></strong> — Download Python and find installation information.</p>
+<p class="resource-meta">Setup · 01a · Introduction and setup</p>
+</article>
+<article class="resource-entry" data-topic="Setup" data-lectures="01a">
+<p><strong><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">Visual Studio Code</a></strong> — A local editor for writing and running your scripts.</p>
+<p class="resource-meta">Setup · 01a · Introduction and setup</p>
+</article>
+<article class="resource-entry" data-topic="Setup" data-lectures="01a">
+<p><strong><a href="https://vscodium.com/" target="_blank" rel="noopener noreferrer">VSCodium</a></strong> — The editor recommended in the local setup guide.</p>
+<p class="resource-meta">Setup · 01a · Introduction and setup</p>
+</article>
+<article class="resource-entry" data-topic="Setup" data-lectures="01a">
+<p><strong><a href="https://jupyter-cloud.gwdg.de/" target="_blank" rel="noopener noreferrer">GWDG Jupyter Cloud</a></strong> — Open the university’s browser-based notebook environment.</p>
+<p class="resource-meta">Setup · 01a · Introduction and setup</p>
+</article>
+<article class="resource-entry" data-topic="Setup" data-lectures="01a">
+<p><strong><a href="https://colab.research.google.com/" target="_blank" rel="noopener noreferrer">Google Colab</a></strong> — An alternative notebook environment in your browser.</p>
+<p class="resource-meta">Setup · 01a · Introduction and setup</p>
+</article>
+<article class="resource-entry" data-topic="Regular expressions" data-lectures="04a">
+<p><strong><a href="https://regex101.com/" target="_blank" rel="noopener noreferrer">regex101</a></strong> — Test patterns against sample text. Select the Python flavour for Python exercises.</p>
+<p class="resource-meta">Regular expressions · 04a · Regular expressions</p>
+</article>
+<article class="resource-entry" data-topic="Regular expressions" data-lectures="04a">
+<p><strong><a href="https://www.rexegg.com/regex-quickstart.html" target="_blank" rel="noopener noreferrer">RexEgg quick reference</a></strong> — Look up regex syntax and common patterns.</p>
+<p class="resource-meta">Regular expressions · 04a · Regular expressions</p>
+</article>
+<article class="resource-entry" data-topic="Files and paths" data-lectures="06b">
+<p><strong><a href="https://docs.python.org/3/library/io.html" target="_blank" rel="noopener noreferrer">Python io documentation</a></strong> — Reference for Python’s input/output streams.</p>
+<p class="resource-meta">Files and paths · 06b · Input/output in Python</p>
+</article>
+<article class="resource-entry" data-topic="Files and paths" data-lectures="06b">
+<p><strong><a href="https://docs.python.org/3/library/os.path.html" target="_blank" rel="noopener noreferrer">Python os.path documentation</a></strong> — Look up path operations used when working with files.</p>
+<p class="resource-meta">Files and paths · 06b · Input/output in Python</p>
+</article>
+<article class="resource-entry" data-topic="Debugging" data-lectures="08b">
+<p><strong><a href="https://docs.python.org/3/library/pdb.html" target="_blank" rel="noopener noreferrer">Python debugger (pdb)</a></strong> — Reference for stepping through a program and inspecting its state.</p>
+<p class="resource-meta">Debugging · 08b · Exceptions and debugging</p>
+</article>
+<article class="resource-entry" data-topic="Language processing" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://spacy.io/" target="_blank" rel="noopener noreferrer">spaCy</a></strong> — The NLP library used for automatic annotation in lecture 10b.</p>
+<p class="resource-meta">Language processing · 10b · spaCy and NLTK / 10b · NLTK-only fallback</p>
+</article>
+<article class="resource-entry" data-topic="Language processing" data-lectures="10b">
+<p><strong><a href="https://spacy.io/usage" target="_blank" rel="noopener noreferrer">spaCy usage guide</a></strong> — Installation and first steps with trained pipelines.</p>
+<p class="resource-meta">Language processing · 10b · spaCy and NLTK</p>
+</article>
+<article class="resource-entry" data-topic="Language processing" data-lectures="10b">
+<p><strong><a href="https://spacy.io/usage/linguistic-features" target="_blank" rel="noopener noreferrer">spaCy linguistic features</a></strong> — Read about tokenisation, tags, entities, and dependency parsing.</p>
+<p class="resource-meta">Language processing · 10b · spaCy and NLTK</p>
+</article>
+<article class="resource-entry" data-topic="Language processing" data-lectures="10b">
+<p><strong><a href="https://spacy.io/api" target="_blank" rel="noopener noreferrer">spaCy API reference</a></strong> — Look up Doc, Token, and other objects used in the examples.</p>
+<p class="resource-meta">Language processing · 10b · spaCy and NLTK</p>
+</article>
+<article class="resource-entry" data-topic="Language processing" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://www.nltk.org/" target="_blank" rel="noopener noreferrer">NLTK</a></strong> — Tools for language processing and access to linguistic datasets.</p>
+<p class="resource-meta">Language processing · 10b · spaCy and NLTK / 10b · NLTK-only fallback</p>
+</article>
+<article class="resource-entry" data-topic="Language processing" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://www.nltk.org/install.html" target="_blank" rel="noopener noreferrer">Installing NLTK</a></strong> — Installation instructions for the Python package.</p>
+<p class="resource-meta">Language processing · 10b · spaCy and NLTK / 10b · NLTK-only fallback</p>
+</article>
+<article class="resource-entry" data-topic="Corpora and lexical resources" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://www.nltk.org/data.html" target="_blank" rel="noopener noreferrer">NLTK data installation</a></strong> — Download corpora and models separately from the NLTK package.</p>
+<p class="resource-meta">Corpora and lexical resources · 10b · spaCy and NLTK / 10b · NLTK-only fallback</p>
+</article>
+<article class="resource-entry" data-topic="Language processing" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://www.nltk.org/book/" target="_blank" rel="noopener noreferrer">Natural Language Processing with Python</a></strong> — The NLTK textbook, with explanations and worked examples.</p>
+<p class="resource-meta">Language processing · 10b · spaCy and NLTK / 10b · NLTK-only fallback</p>
+</article>
+<article class="resource-entry" data-topic="Language processing" data-lectures="10b-fallback">
+<p><strong><a href="https://www.nltk.org/api/nltk.html" target="_blank" rel="noopener noreferrer">NLTK API reference</a></strong> — Detailed reference linked in the NLTK-only fallback lecture.</p>
+<p class="resource-meta">Language processing · 10b · NLTK-only fallback · Fallback lecture</p>
+</article>
+<article class="resource-entry" data-topic="Language processing" data-lectures="10b-fallback">
+<p><strong><a href="https://catalog.ldc.upenn.edu/docs/LDC99T42/tagguid1.pdf" target="_blank" rel="noopener noreferrer">Penn Treebank tagging guidelines (PDF)</a></strong> — Tagging reference linked in the NLTK-only fallback lecture.</p>
+<p class="resource-meta">Language processing · 10b · NLTK-only fallback · Fallback lecture</p>
+</article>
+<article class="resource-entry" data-topic="Further NLP and machine learning" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://scikit-learn.org/" target="_blank" rel="noopener noreferrer">scikit-learn</a></strong> — Machine-learning software introduced in the further-software overview.</p>
+<p class="resource-meta">Further NLP and machine learning · 10b · spaCy and NLTK / 10b · NLTK-only fallback · Optional overview</p>
+</article>
+<article class="resource-entry" data-topic="Further NLP and machine learning" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/" target="_blank" rel="noopener noreferrer">TreeTagger</a></strong> — A tagging tool introduced in the further-software overview.</p>
+<p class="resource-meta">Further NLP and machine learning · 10b · spaCy and NLTK / 10b · NLTK-only fallback · Optional overview</p>
+</article>
+<article class="resource-entry" data-topic="Further NLP and machine learning" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://nlp.stanford.edu" target="_blank" rel="noopener noreferrer">Stanford NLP</a></strong> — Language-processing research and tools from Stanford.</p>
+<p class="resource-meta">Further NLP and machine learning · 10b · spaCy and NLTK / 10b · NLTK-only fallback · Optional overview</p>
+</article>
+<article class="resource-entry" data-topic="Further NLP and machine learning" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://keras.io/" target="_blank" rel="noopener noreferrer">Keras</a></strong> — Deep-learning software introduced in the further-software overview.</p>
+<p class="resource-meta">Further NLP and machine learning · 10b · spaCy and NLTK / 10b · NLTK-only fallback · Optional overview</p>
+</article>
+<article class="resource-entry" data-topic="Further NLP and machine learning" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://www.tensorflow.org/" target="_blank" rel="noopener noreferrer">TensorFlow</a></strong> — Machine-learning software introduced in the further-software overview.</p>
+<p class="resource-meta">Further NLP and machine learning · 10b · spaCy and NLTK / 10b · NLTK-only fallback · Optional overview</p>
+</article>
+<article class="resource-entry" data-topic="Further NLP and machine learning" data-lectures="10b 10b-fallback">
+<p><strong><a href="https://weblicht.sfs.uni-tuebingen.de/" target="_blank" rel="noopener noreferrer">WebLicht</a></strong> — Web-based linguistic processing introduced in the software overview.</p>
+<p class="resource-meta">Further NLP and machine learning · 10b · spaCy and NLTK / 10b · NLTK-only fallback · Optional overview</p>
+</article>
+<article class="resource-entry" data-topic="Corpora and lexical resources" data-lectures="10c">
+<p><strong><a href="http://wordnetweb.princeton.edu/perl/webwn" target="_blank" rel="noopener noreferrer">WordNet browser</a></strong> — Explore word senses and semantic relations in WordNet.</p>
+<p class="resource-meta">Corpora and lexical resources · 10c · Corpora and language resources</p>
+</article>
+<article class="resource-entry" data-topic="Numbers" data-lectures="03a">
+<p><strong><a href="https://docs.python.org/3/library/math.html" target="_blank" rel="noopener noreferrer">Python math documentation</a></strong> — Reference for the mathematical functions introduced in 03a.</p>
+<p class="resource-meta">Numbers · 03a · Numbers · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="Numbers" data-lectures="05b 10b 10b-fallback">
+<p><strong><a href="https://docs.python.org/3/library/random.html" target="_blank" rel="noopener noreferrer">Python random documentation</a></strong> — Reference for random choices and integers used in the exercises and module examples.</p>
+<p class="resource-meta">Numbers · 05b · Tuples / 10b · spaCy and NLTK / 10b · NLTK-only fallback · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="References and objects" data-lectures="09a 11b">
+<p><strong><a href="https://docs.python.org/3/library/copy.html" target="_blank" rel="noopener noreferrer">Python copy documentation</a></strong> — Reference for shallow and deep copies introduced in 09a and revisited in 11b.</p>
+<p class="resource-meta">References and objects · 09a · References and identity / 11b · Encapsulation and inheritance · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="Practice" data-lectures="extra">
+<p><strong><a href="https://www.w3schools.com/python/" target="_blank" rel="noopener noreferrer">W3Schools Python</a></strong> — Short examples and exercises for revision.</p>
+<p class="resource-meta">Practice · Additional resources · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="Beyond the course" data-lectures="extra">
+<p><strong><a href="https://pandas.pydata.org/docs/getting_started/index.html" target="_blank" rel="noopener noreferrer">pandas getting started</a></strong> — An additional reference for working with tables; not part of the lecture sequence.</p>
+<p class="resource-meta">Beyond the course · Additional resources · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="Setup" data-lectures="extra">
+<p><strong><a href="https://brew.sh/" target="_blank" rel="noopener noreferrer">Homebrew</a></strong> — An optional package manager used in the macOS setup instructions.</p>
+<p class="resource-meta">Setup · Additional resources · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="Regular expressions" data-lectures="04c">
+<p><strong><a href="https://docs.python.org/3/library/re.html" target="_blank" rel="noopener noreferrer">Python re documentation</a></strong> — Reference for the module introduced in lecture 04c.</p>
+<p class="resource-meta">Regular expressions · 04c · Regex in Python · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="Files and paths" data-lectures="06b">
+<p><strong><a href="https://docs.python.org/3/library/os.html" target="_blank" rel="noopener noreferrer">Python os documentation</a></strong> — Reference for the operating-system module introduced in 06b.</p>
+<p class="resource-meta">Files and paths · 06b · Input/output in Python · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="Corpora and lexical resources" data-lectures="10c">
+<p><strong><a href="https://www.nltk.org/howto/corpus.html" target="_blank" rel="noopener noreferrer">NLTK corpus readers</a></strong> — Reference for the corpus readers, including PlaintextCorpusReader, used in 10c.</p>
+<p class="resource-meta">Corpora and lexical resources · 10c · Corpora and language resources · Additional reference</p>
+</article>
+<article class="resource-entry" data-topic="Corpora and lexical resources" data-lectures="10c">
+<p><strong><a href="https://www.nltk.org/howto/wordnet.html" target="_blank" rel="noopener noreferrer">WordNet in NLTK</a></strong> — Look up the NLTK interface to WordNet used in 10c.</p>
+<p class="resource-meta">Corpora and lexical resources · 10c · Corpora and language resources · Additional reference</p>
+</article>
+</div>
+<footer>
+<p>Göttingen Centre for Digital Humanities (GCDH) &copy; 2026</p>
+</footer>
+</main>
+</div><script src="resources.js" defer></script><script src="navigation.js" defer></script>
 </body>
-
 </html>

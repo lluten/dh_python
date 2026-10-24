@@ -21,20 +21,24 @@
             <div class="brand">DH_PYTHON<span>//</span>101</div>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fa-solid fa-home"></i> Start</a></li>
-                    <li><a href="setup.html" class="active"><i class="fa-solid fa-download"></i> Setup</a></li>
-                    <li><a href="workflow.html"><i class="fa-solid fa-folder-open"></i> Workflow</a></li>
-                    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+                    <li><a href="index.html"><i class="fa-solid fa-home"></i> Start</a>
+</li>
+                    <li><a href="setup.html" class="active" aria-current="page"><i class="fa-solid fa-download"></i> Setup</a>
+</li>
+                    <li><a href="workflow.html"><i class="fa-solid fa-folder-open"></i> Workflow</a>
+</li>
+                    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Resources</a>
+</li>
                 </ul>
             </nav>
         </aside>
 
         <main>
-            <section>
-                <section>
-                    <h1>System Setup</h1>
-                    <p class="lead">Prepare your computer for Python-based Digital Humanities work or check out
-                        cloud-based alternatives.</p>
+<header class="page-header">
+<h1>System Setup</h1>
+<p class="lead">Choose a browser-based environment or install Python on your computer.</p>
+</header>
+<section id="environment">
 
                     <div class="tabs-container">
 
@@ -67,47 +71,44 @@
 
                                 <div id="win" class="tab-content inner-tab-content active">
                                     <h3>Step 1: Install Python</h3>
-                                    <p>Download the latest Python installer from <a
+                                    <p>Download Python for Windows from <a
                                             href="https://www.python.org/downloads/windows/" class="link"
-                                            target="_blank">python.org</a>. Run the installer and ensure you
-                                        check the box <b style="color: var(--accent-red);">Add Python to PATH</b> on the
-                                        first screen.</p>
+                                            target="_blank">python.org</a>. Follow the installation instructions there. If you use the traditional installer, enable <strong>Add Python to PATH</strong>.</p>
                                     <p>Check the installation by opening a new terminal or PowerShell window and
                                         running:
                                     </p>
                                     <div class="code-block">
                                         <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                                onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></i></button></div>
+                                                aria-label="Copy command" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button>
+</div>
                                         <pre>python --version</pre>
                                     </div>
                                 </div>
 
                                 <div id="mac" class="tab-content inner-tab-content">
                                     <h3>Step 1: Install Python</h3>
-                                    <p> You can use <a href="https://brew.sh/" class="link" target="_blank">Homebrew</a>
+                                    <p> If you already use Homebrew, you can use <a href="https://brew.sh/" class="link" target="_blank">Homebrew</a>
                                         to
                                         install
-                                        the interpreter to avoid conflicts
-                                        with the system Python:</p>
+                                        Python. Otherwise, download and run the macOS installer from <a href="https://www.python.org/downloads/macos/">python.org</a>, then open Terminal and run <code>python3 --version</code>:</p>
                                     <div class="code-block">
                                         <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                                onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
-                                        <pre>brew install python</pre>
+                                                aria-label="Copy command" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button>
+</div>
+                                        <pre>brew install python
+python3 --version</pre>
                                     </div>
                                 </div>
 
                                 <div id="linux" class="tab-content inner-tab-content">
                                     <h3>Step 1: Install Python</h3>
-                                    <p>Use your distribution's package manager and install the desired version. Check
-                                        all
-                                        available versions at <a href="https://www.python.org/downloads/"
-                                            target="_blank">python.org</a>.</p>
+                                    <p>For Ubuntu or Debian, open Terminal and run the commands below. Other distributions use different package managers. If Python is already installed, check it with <code>python3 --version</code>.</p>
                                     <div class="code-block">
                                         <div class="code-header"><span>TERMINAL</span><button class="copy-btn"
-                                                onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button></div>
+                                                aria-label="Copy command" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i></button>
+</div>
                                         <pre>sudo apt update
-sudo apt upgrade
-sudo apt install python[VERSION]</pre>
+sudo apt install python3 python3-venv python3-pip</pre>
                                     </div>
 
                                 </div>
@@ -209,6 +210,7 @@ sudo apt install python[VERSION]</pre>
 
                 </section>
 
+<p><a href="workflow.html">Next: create your environment and run an exercise</a></p>
                 <footer>
                     <p>Göttingen Centre for Digital Humanities (GCDH) &copy; 2026</p>
                 </footer>
@@ -236,7 +238,18 @@ sudo apt install python[VERSION]</pre>
 
         async function copyCode(btn) {
             const text = btn.closest('.code-block').querySelector('pre').innerText;
-            await navigator.clipboard.writeText(text);
+            try {
+                await navigator.clipboard.writeText(text);
+                btn.setAttribute("aria-label", "Copied");
+            } catch (_) {
+                btn.setAttribute("aria-label", "Select the command to copy it manually");
+                const range = document.createRange();
+                range.selectNodeContents(btn.closest('.code-block').querySelector('pre'));
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                return;
+            }
             const textColor = btn.style.color;
             btn.style.color = "#64748B4A";
             setTimeout(() => btn.style.color = textColor, 330);
